@@ -6,7 +6,7 @@
                     <v-card-text>
                             <v-card-text class="headline text--white">Login</v-card-text>
                     </v-card-text>
-                    <v-form>
+                    <v-form @submit.prevent="login">
                         <v-card-text>
                             <v-text-field label="Username" v-model="username"  name="username" type="text"></v-text-field>
                             <v-text-field label="Password" v-model="password" name="password" type="password"></v-text-field>
@@ -15,10 +15,10 @@
                             <v-row align="center" no-gutters>
                                 <v-col class="text-center">
                                     <div class="my-2">
-                                        <v-btn color="primary" type="submit" @click="login" block>Login</v-btn>
+                                        <v-btn color="primary" type="submit"  block>Login</v-btn>
                                     </div>
                                     <div>
-                                        <v-btn color="primary" x-small text>Sign up</v-btn>
+                                        <v-btn color="primary" @click="navigateTo({name:'SignUp'})"  x-small  text> Sign up </v-btn>
                                     </div>
                                 </v-col>
                             </v-row>
@@ -31,7 +31,8 @@
 </template>
 <script>
 
-import axios from 'axios'
+
+import axios from 'axios';
 
 export default {
     name:"Login",
@@ -56,10 +57,14 @@ export default {
                 (this.$router.push({name:'Dashboard'}));
                 
             })
-            axios.get('http://localhost:3000/auth/',{ headers: { Authorization:localStorage.getItem('SavedToken') }})
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
+            // axios.get('http://localhost:3000/dashboard/',{ headers: { Authorization:localStorage.getItem('SavedToken') }})
+            // .then(response => console.log(response))
+            // .catch(error => console.log(error));
         },
+        navigateTo(route) {
+            this.$router.push(route);
+        }
+        
 
     }
 

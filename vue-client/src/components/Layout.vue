@@ -9,7 +9,7 @@
 
 
             <v-btn>
-                <span>Sign out</span>
+                <span @click="logUserOut()">Sign out</span>
                 <v-icon right>mdi-exit-to-app </v-icon>
             </v-btn>
         </v-app-bar>
@@ -43,6 +43,12 @@ export default {
         return{
             drawer: false,
         }
+    },
+    methods: {
+        logUserOut() {
+        localStorage.removeItem("SavedToken");
+        this.$router.push("/login");
+    }
     }
 }
 </script>
