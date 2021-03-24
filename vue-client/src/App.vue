@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-main>
+  <v-app class="grey lighten-4">
+    <v-main class="mx-4">
       <router-view />
     </v-main>
   </v-app>
